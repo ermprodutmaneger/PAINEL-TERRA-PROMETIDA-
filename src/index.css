@@ -1,0 +1,303 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/inter';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ==========================================================================
+   TERRA PROMETIDA EXPRESS — paleta da marca (aprovada)
+   Todos os componentes consomem estas variáveis; nunca cores soltas.
+   ========================================================================== */
+@theme {
+  --font-sans: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Cores de marca (fixas, iguais nos dois temas) */
+  --color-terra: #2f5d3a;
+  --color-mostarda: #e3a21c;
+  --color-terracota: #b5553a;
+  --color-areia: #f5f0e6;
+  --color-grafite: #22201c;
+  --color-verde-claro: #6e9b78;
+  --color-mostarda-claro: #f5c65b;
+  --color-cinza: #8a857c;
+
+  --radius-xl: 0.875rem;
+  --radius-lg: 0.625rem;
+  --radius-md: 0.5rem;
+  --radius-sm: 0.375rem;
+
+  --shadow-card: 0 1px 2px rgb(34 32 28 / 0.05), 0 6px 18px -10px rgb(34 32 28 / 0.18);
+  --shadow-pop: 0 10px 38px -12px rgb(34 32 28 / 0.32);
+}
+
+:root {
+  --fundo: #f7f3ea;
+  --superficie: #ffffff;
+  --superficie-2: #fdfbf6;
+  --superficie-inversa: #22201c;
+  --texto: #22201c;
+  --texto-suave: #6b665e;
+  --texto-tenue: #8a857c;
+  --borda: #e4dccb;
+  --borda-forte: #cfc5b0;
+  --anel: #2f5d3a;
+
+  --marca: #2f5d3a;
+  --marca-fg: #ffffff;
+  --marca-suave: #e8efe9;
+  --acento: #f5f0e6;
+  --acento-fg: #22201c;
+
+  --sucesso: #2f5d3a;
+  --sucesso-suave: #e8efe9;
+  --alerta: #b5553a;
+  --alerta-suave: #fbeae5;
+  --atencao: #a8740c;
+  --atencao-suave: #fdf2da;
+
+  --destaque: #a8740c; /* mostarda escurecida: legível como texto em fundo claro */
+  --destaque-fundo: #e3a21c;
+  --positivo: #3f7b4e;
+  --zebra: #faf7f0;
+
+  --chart-1: #2f5d3a;
+  --chart-2: #e3a21c;
+  --chart-3: #6e9b78;
+  --chart-4: #b5553a;
+  --chart-5: #8a857c;
+  --chart-6: #f5c65b;
+
+  color-scheme: light;
+}
+
+.dark {
+  --fundo: #10130f;
+  --superficie: #1a1e19;
+  --superficie-2: #212620;
+  --superficie-inversa: #efebe1;
+  --texto: #efebe1;
+  --texto-suave: #a9b3a7;
+  --texto-tenue: #8a9186;
+  --borda: #333a31;
+  --borda-forte: #454e42;
+  --anel: #6e9b78;
+
+  --marca: #3f7b4e;
+  --marca-fg: #ffffff;
+  --marca-suave: #22301f;
+  --acento: #262b24;
+  --acento-fg: #efebe1;
+
+  --sucesso: #6e9b78;
+  --sucesso-suave: #1e2a20;
+  --alerta: #dd7a62;
+  --alerta-suave: #33201b;
+  --atencao: #f5c65b;
+  --atencao-suave: #322a15;
+
+  --destaque: #f5c65b;
+  --destaque-fundo: #f5c65b;
+  --positivo: #6e9b78;
+  --zebra: #161a15;
+
+  --chart-1: #6e9b78;
+  --chart-2: #f5c65b;
+  --chart-3: #2f5d3a;
+  --chart-4: #dd7a62;
+  --chart-5: #9aa396;
+  --chart-6: #3f7b4e;
+
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    border-color: var(--borda);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--fundo);
+    color: var(--texto);
+    font-family: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04';
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overscroll-behavior-y: none;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--anel);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--marca) 25%, transparent);
+  }
+
+  /* números sempre alinhados em tabelas financeiras */
+  .num {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum';
+  }
+
+  input[type='date']::-webkit-calendar-picker-indicator {
+    filter: invert(var(--cal-invert, 0));
+    opacity: 0.55;
+    cursor: pointer;
+  }
+  .dark {
+    --cal-invert: 1;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--texto-tenue) 45%, transparent);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in srgb, var(--texto-tenue) 70%, transparent);
+    background-clip: content-box;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  .superficie {
+    background-color: var(--superficie);
+  }
+  .superficie-2 {
+    background-color: var(--superficie-2);
+  }
+  .text-suave {
+    color: var(--texto-suave);
+  }
+  .text-tenue {
+    color: var(--texto-tenue);
+  }
+  .trilho-zebra tbody tr:nth-child(even) {
+    background-color: var(--zebra);
+  }
+  .sem-barra::-webkit-scrollbar {
+    display: none;
+  }
+  .sem-barra {
+    scrollbar-width: none;
+  }
+}
+
+/* ==========================================================================
+   Impressão de relatórios e checklists
+   ========================================================================== */
+/* ====================== Toque: iPad e iPhone (Safari) ==================== */
+@media (pointer: coarse) {
+  /* O Safari do iOS dá zoom ao focar campo com fonte menor que 16px e não
+     volta sozinho ao tirar o zoom — daí a fonte maior só no toque. */
+  input:not([type='checkbox']):not([type='radio']):not([type='range']),
+  textarea,
+  select {
+    font-size: 16px;
+  }
+
+  /* Alvo de toque confortável (recomendação da Apple: 44px). */
+  [data-tamanho='iconeXs'],
+  [data-tamanho='iconeSm'] {
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+  }
+  [data-tamanho='sm'] {
+    min-height: 2.5rem;
+  }
+  [data-tamanho='icone'] {
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+  }
+
+  /* Sem flash cinza ao tocar e sem menu de contexto no cartão do kanban. */
+  a,
+  button,
+  [role='button'],
+  [data-coluna] > * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  .cartao-pedido {
+    -webkit-touch-callout: none;
+  }
+
+  /* :hover fica "preso" depois do toque no Safari; reduz o efeito colado. */
+  .hover-limite:hover {
+    transition: none;
+  }
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm 12mm;
+  }
+
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .nao-imprimir,
+  aside,
+  nav,
+  header.app-header,
+  .barra-mobile {
+    display: none !important;
+  }
+
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+  }
+
+  .area-impressao {
+    display: block !important;
+  }
+
+  .imprimir-bloco {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+  }
+
+  table {
+    break-inside: auto;
+  }
+  thead {
+    display: table-header-group;
+  }
+  tr {
+    break-inside: avoid;
+  }
+
+  a[href]::after {
+    content: '';
+  }
+}
